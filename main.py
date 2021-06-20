@@ -39,7 +39,6 @@ def decoder(code):
 
     for i in range(len(new_code)):
         word.append(ord(new_code[i]) // n)
-    print(word)
     new_word = list()
     for k in word:
         new_word.append(get_key(k))
@@ -76,6 +75,7 @@ def main():
                     vk.messages.send(user_id=event.obj['message']['from_id'],
                                      message=f"{coder(event.obj.message['text'][1::])}",
                                      random_id=random.randint(0, 2 ** 64))
+                    print(event.obj['message']['from_id'])
                 if event.from_chat:
                     vk.messages.send(chat_id=event.chat_id,
                                      message=f"{coder(event.obj.message['text'][1::])}",
@@ -89,6 +89,21 @@ def main():
                 if event.from_chat:
                     vk.messages.send(chat_id=event.chat_id,
                                      message=f"{decoder(event.obj.message['text'][1::])}",
+                                     random_id=random.randint(0, 2 ** 64))
+            else:
+                if event.from_user:
+                    vk.messages.send(user_id=event.obj['message']['from_id'],
+                                     message=f"Я умею переводить только русский язык, а также символы: '! , ? .'\n"
+                                             f"Корректный пример шифрования: !Я хочу, чтобы ты зашифровал это сообщение"
+                                             f"!,\nПервый восклицательный знак стоит впритык к предложению, точно также"
+                                             f" следует расшифровывать",
+                                     random_id=random.randint(0, 2 ** 64))
+                if event.from_chat:
+                    vk.messages.send(chat_id=event.chat_id,
+                                     message=f"Я умею переводить только русский язык, а также символы: '! , ? .'\n"
+                                             f"Корректный пример шифрования: !Я хочу, чтобы ты зашифровал это сообщение"
+                                             f"!,\nПервый восклицательный знак стоит впритык к предложению, точно также"
+                                             f" следует расшифровывать",
                                      random_id=random.randint(0, 2 ** 64))
 
 
