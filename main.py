@@ -5,9 +5,9 @@ import random
 
 def coder(text):
     word = list()
-    n = random.randint(6, 84)
+    n = random.randint(6, 24)
     for i in range(len(text)):
-        word.append(alp[text[i]] * n)
+        word.append(ord(text[i]) * n)
 
     new_word = list()
     for k in word:
@@ -41,7 +41,8 @@ def decoder(code):
         word.append(ord(new_code[i]) // n)
     new_word = list()
     for k in word:
-        new_word.append(get_key(k))
+        # new_word.append(get_key(k))
+        new_word.append(chr(k))
     return ''.join(new_word)
 
 
